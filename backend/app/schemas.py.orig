@@ -2,27 +2,15 @@ from pydantic import BaseModel
 from typing import Optional
 
 class UserSchema(BaseModel):
-    """
-    User schema definition.
-    """
     name: str
     email: str
     password: str
 
     class Config:
-        """
-        Configuration for UserSchema.
-        """
         orm_mode = True
 
 class DataSchema(BaseModel):
-    """
-    Data schema definition.
-    """
     data: str
 
     class Config:
-        """
-        Configuration for DataSchema.
-        """
         orm_mode = True

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 cfg = BaseSettings()
 
-def get_db() -> None:
+def get_db():
     engine = create_engine(cfg.DATABASE_URL)
     SessionLocal = sessionmaker(bind=engine)
     db = SessionLocal()

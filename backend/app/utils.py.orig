@@ -2,9 +2,9 @@ from jose import jwt
 from fastapi import HTTPException
 from app.settings import Settings
 
-def validate_token(token: str) -> str:
+def validate_token(token: str):
     try:
-        payload = jwt.decode(token, Settings().SECRET_KEY, algorithms=[Settings().ALGORITHM], options={"verify_exp": True, "verify_iss": True})
+        payload = jwt.decode(token, Settings().SECRET_KEY, algorithms=[Settings().ALGORITHM])
         user_id: str = payload.get('sub')
         return user_id
     except jwt.JWTError:

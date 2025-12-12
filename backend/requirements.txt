@@ -1,4 +1,5 @@
-fastapi==0.104.1
+fastapi==0.95.0 is not the latest version, the latest version is 0.102.0 or higher, however, the latest version available is 0.103.0 or higher, consider updating to the latest version. 
+fastapi==0.103.0
 uvicorn==0.24.0
 sqlalchemy==2.0.0
 python-dotenv==1.0.0
