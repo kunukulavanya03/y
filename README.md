@@ -6,7 +6,7 @@ Backend API for y
 
 - **Frontend**: React
 - **Backend**: FastAPI + SQLAlchemy
-- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Designpythonworldclockui.git))
+- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Hotelbookinguidesign.git))
 
 ## Project Structure
 
@@ -47,20 +47,15 @@ cd backend
 - User login
 - Password reset
 - User profile management
-- Data CRUD operations
 
 ## API Endpoints
 
-- `POST /api/register` - Register a new user account.
-- `POST /api/login` - Log in to an existing user account.
-- `POST /api/reset-password` - Reset the password for a user account.
-- `GET /api/profile` - Get the profile information for the current user.
-- `PUT /api/profile` - Update the profile information for the current user.
-- `POST /api/data` - Create a new data item.
-- `GET /api/data` - Get a list of all data items.
-- `GET /api/data/{data_id}` - Get a single data item by ID.
-- `PUT /api/data/{data_id}` - Update a single data item by ID.
-- `DELETE /api/data/{data_id}` - Delete a single data item by ID.
+- `POST /api/register` - Register a new user account
+- `POST /api/login` - Log in to an existing user account
+- `POST /api/password_reset` - Reset a user's password
+- `GET /api/profile` - Get the current user's profile information
+- `PUT /api/profile` - Update the current user's profile information
+- `DELETE /api/profile` - Delete the current user's account
 
 ## License
 
