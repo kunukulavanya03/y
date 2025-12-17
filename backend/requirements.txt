@@ -1,9 +1,10 @@
-fastapi==0.95.0 is not the latest version, the latest version is 0.102.0 or higher, however, the latest version available is 0.103.0 or higher, consider updating to the latest version. 
-fastapi==0.103.0
-uvicorn==0.24.0
-sqlalchemy==2.0.0
-python-dotenv==1.0.0
-python-jose==3.3.0
-passlib==1.7.4
-bcrypt==4.0.0
-pydantic==2.7.4
+fastapi>=0.104.0
+uvicorn>=0.24.0
+sqlalchemy>=2.0.0
+pydantic>=2.7.4
+python-dotenv>=1.0.0
+python-jose>=3.3.0
+passlib>=1.7.4
+bcrypt>=4.0.0
+python-multipart>=0.0.6
+alembic>=1.12.0
