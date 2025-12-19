@@ -1,20 +1,30 @@
+import React, { useState } from 'react';
 import { Search, Calendar, MessageCircle, User, Bell, Hotel, MapPin, Star, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 interface DashboardProps {
   onNavigate: () => void;
 }
-
 export function Dashboard({ onNavigate }: DashboardProps) {
-  const recentBookings = [
-    { id: 1, hotel: 'Grand Plaza Hotel', location: 'New York', date: 'Dec 20-23, 2024', status: 'Confirmed' },
-    { id: 2, hotel: 'Beach Resort Paradise', location: 'Miami', date: 'Jan 5-10, 2025', status: 'Pending' },
-  ];
-
-  const notifications = [
-    { id: 1, message: 'Your booking at Grand Plaza Hotel is confirmed!', time: '2 hours ago' },
-    { id: 2, message: 'Special offer: 20% off on weekend stays', time: '5 hours ago' },
-  ];
+  const [recentBookings, setrecentBookings] = useState([]);
+  const [notifications, setnotifications] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -45,7 +55,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               </button>
             </div>
           </div>
-
           {/* Quick Search Card */}
           <div 
             className="bg-white rounded-2xl p-6 cursor-pointer hover:shadow-2xl transition-all duration-300"
@@ -81,7 +90,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           </div>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
@@ -131,7 +139,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 </div>
               </div>
             </div>
-
             {/* Recent Bookings */}
             <div>
               <div 
@@ -173,7 +180,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               </div>
             </div>
           </div>
-
           {/* Right Column - Chat & Notifications */}
           <div className="space-y-8">
             {/* Chat Support */}
@@ -197,7 +203,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 Start Chat
               </button>
             </div>
-
             {/* Notifications */}
             <div>
               <div 
@@ -222,7 +227,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           </div>
         </div>
       </div>
-
       {/* Floating Action Button */}
       <button
         onClick={onNavigate}
