@@ -1,15 +1,32 @@
+import React, { useState } from 'react';
 import { useState } from 'react';
 import { CreditCard, Lock, Check, Calendar, User, Home, Mail, Phone, Shield, MessageCircle } from 'lucide-react';
-
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 interface PaymentProps {
   booking: any;
   onNavigate: () => void;
 }
-
 export function Payment({ booking, onNavigate }: PaymentProps) {
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'paypal'>('card');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   const handlePayment = () => {
     setIsProcessing(true);
@@ -21,7 +38,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
       }, 3000);
     }, 2000);
   };
-
   if (isComplete) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
@@ -65,7 +81,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
       </div>
     );
   }
-
   return (
     <div className="min-h-screen pb-12">
       {/* Payment Header Banner */}
@@ -95,7 +110,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left Column - Payment Form */}
@@ -141,7 +155,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                 </div>
               </div>
             </div>
-
             {/* Card Details Form */}
             {paymentMethod === 'card' && (
               <div>
@@ -163,7 +176,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                       />
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-gray-700 mb-2 block">Expiry Date</label>
@@ -185,7 +197,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                       </div>
                     </div>
                   </div>
-
                   <div>
                     <label className="text-gray-700 mb-2 block">Cardholder Name</label>
                     <div className="relative">
@@ -200,7 +211,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                 </div>
               </div>
             )}
-
             {/* Billing Information */}
             <div>
               <div 
@@ -217,7 +227,7 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                       <input
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder=""
                         className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#BD16D6]"
                       />
                     </div>
@@ -234,7 +244,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <label className="text-gray-700 mb-2 block">Address</label>
                   <div className="relative">
@@ -246,7 +255,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                     />
                   </div>
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="text-gray-700 mb-2 block">City</label>
@@ -268,7 +276,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
               </div>
             </div>
           </div>
-
           {/* Right Column - Order Summary */}
           <div className="lg:col-span-1">
             <div 
@@ -279,13 +286,11 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
               }}
             >
               <h2 className="text-white mb-6">Booking Summary</h2>
-
               <div className="space-y-4 mb-6">
                 <div className="p-4 rounded-xl bg-white/10">
                   <h3 className="text-white mb-2">{booking?.hotel || 'Grand Plaza Hotel'}</h3>
                   <p className="text-white opacity-90">{booking?.room?.name || 'Deluxe Room'}</p>
                 </div>
-
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-white opacity-90">Check-in</span>
@@ -305,7 +310,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                   </div>
                 </div>
               </div>
-
               <div className="border-t border-white/20 pt-4 mb-6">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
@@ -328,7 +332,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                   </div>
                 </div>
               </div>
-
               <button
                 onClick={handlePayment}
                 disabled={isProcessing}
@@ -347,7 +350,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                   </>
                 )}
               </button>
-
               {/* Security Badge */}
               <div className="mt-6 p-4 rounded-xl bg-white/10">
                 <div className="flex items-center gap-3">
@@ -360,7 +362,6 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
                   </div>
                 </div>
               </div>
-
               {/* Support */}
               <div className="mt-4 p-4 rounded-xl bg-white/10">
                 <div className="flex items-center gap-2 mb-2">
