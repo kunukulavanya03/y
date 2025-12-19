@@ -29,17 +29,15 @@ export const PATHS = {
     LOGIN: {
     POST: getApiPath("login", "GET")
     },
-    DATA: {
-    GET: getApiPath("data", "GET")
-    POST: getApiPath("data", "GET")
-    PUT: getApiPath("data/{data_id}", "GET")
-    DELETE: getApiPath("data/{data_id}", "GET")
+    PROFILE: {
+    GET: getApiPath("profile", "GET")
+    PUT: getApiPath("profile", "GET")
     },
-    DASHBOARD: {
-    GET: getApiPath("dashboard", "GET")
+    PASSWORD-RESET: {
+    POST: getApiPath("password-reset", "GET")
     },
-    NOTIFICATIONS: {
-    POST: getApiPath("notifications", "GET")
+    USERS: {
+    GET: getApiPath("users", "GET")
     },
   },
   
