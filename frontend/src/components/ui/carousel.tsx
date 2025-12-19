@@ -7,7 +7,7 @@ import useEmblaCarousel, {
 import { ArrowLeft, ArrowRight } from "lucide-react@0.487.0";
 import { cn } from "./utils";
 import { Button } from "./button";
-import { getData, deleteData{data_id}, createData, createNotifications, logout, updateData{data_id}, getDashboard, login, createLogin, createRegister } from './services/api';
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
