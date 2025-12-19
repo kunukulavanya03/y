@@ -6,7 +6,7 @@ Backend API for y
 
 - **Frontend**: React
 - **Backend**: FastAPI + SQLAlchemy
-- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Hotelbookinguidesign.git))
+- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Designecommerceproductui.git))
 
 ## Project Structure
 
@@ -43,19 +43,21 @@ cd backend
 
 ## Features
 
-- User registration
-- User login
-- Password reset
-- User profile management
+- user management
+- data management
+- dashboard
+- notifications
 
 ## API Endpoints
 
-- `POST /api/register` - Register a new user account
-- `POST /api/login` - Log in to an existing user account
-- `POST /api/password_reset` - Reset a user's password
-- `GET /api/profile` - Get the current user's profile information
-- `PUT /api/profile` - Update the current user's profile information
-- `DELETE /api/profile` - Delete the current user's account
+- `POST /api/register` - Create a new user account
+- `POST /api/login` - Login to the application
+- `GET /api/data` - Get user data
+- `POST /api/data` - Create new data
+- `PUT /api/data/{data_id}` - Update existing data
+- `DELETE /api/data/{data_id}` - Delete existing data
+- `GET /api/dashboard` - Get user dashboard data
+- `POST /api/notifications` - Create new notification
 
 ## License
 
