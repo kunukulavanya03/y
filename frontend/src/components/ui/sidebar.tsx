@@ -17,7 +17,7 @@ import {
   SheetTitle,
 } from "./sheet";
 import { Skeleton } from "./skeleton";
-import { getData, deleteData{data_id}, createData, createNotifications, logout, updateData{data_id}, getDashboard, login, createLogin, createRegister } from './services/api';
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 import {
   Tooltip,
   TooltipContent,
