@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as React from "react";
-import { getData, deleteData{data_id}, createData, createNotifications, logout, updateData{data_id}, getDashboard, login, createLogin, createRegister } from './services/api';
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 const MOBILE_BREAKPOINT = 768;
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
