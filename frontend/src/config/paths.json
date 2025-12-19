@@ -9,17 +9,15 @@
       "login": {
         "post": "/api/login"
       },
-      "data": {
-        "get": "/api/data",
-        "post": "/api/data",
-        "put": "/api/data/{data_id}",
-        "delete": "/api/data/{data_id}"
+      "profile": {
+        "get": "/api/profile",
+        "put": "/api/profile"
       },
-      "dashboard": {
-        "get": "/api/dashboard"
+      "password-reset": {
+        "post": "/api/password-reset"
       },
-      "notifications": {
-        "post": "/api/notifications"
+      "users": {
+        "get": "/api/users"
       }
     }
   },
