@@ -1,12 +1,29 @@
+import React, { useState } from 'react';
 import { useState } from 'react';
 import { LogIn, Mail, Lock, MessageCircle } from 'lucide-react';
-
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 interface LoginProps {
   onNavigate: () => void;
 }
-
 export function Login({ onNavigate }: LoginProps) {
   const [isLogin, setIsLogin] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -58,7 +75,6 @@ export function Login({ onNavigate }: LoginProps) {
             </div>
           </div>
         </div>
-
         {/* Right side - Login Form */}
         <div className="bg-white rounded-3xl p-12 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(189, 22, 214, 0.3)' }}>
           <div className="space-y-8">
@@ -70,7 +86,6 @@ export function Login({ onNavigate }: LoginProps) {
                 {isLogin ? "Enter your credentials to continue" : "Join us to start booking amazing hotels"}
               </p>
             </div>
-
             <div className="space-y-6">
               <div className="space-y-2">
                 <label className="text-gray-700">Email Address</label>
@@ -78,12 +93,11 @@ export function Login({ onNavigate }: LoginProps) {
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder=""
                     className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#BD16D6] transition-all"
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <label className="text-gray-700">Password</label>
                 <div className="relative">
@@ -95,18 +109,7 @@ export function Login({ onNavigate }: LoginProps) {
                   />
                 </div>
               </div>
-
-              {!isLogin && (
-                <div className="space-y-2">
-                  <label className="text-gray-700">Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="John Doe"
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#BD16D6] transition-all"
-                  />
-                </div>
-              )}
-
+              {null}
               <button
                 onClick={onNavigate}
                 className="w-full py-4 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
@@ -118,7 +121,6 @@ export function Login({ onNavigate }: LoginProps) {
                 <LogIn size={20} />
                 {isLogin ? "Sign In" : "Create Account"}
               </button>
-
               <div className="text-center">
                 <button
                   onClick={() => setIsLogin(!isLogin)}
@@ -128,7 +130,6 @@ export function Login({ onNavigate }: LoginProps) {
                 </button>
               </div>
             </div>
-
             {/* User Role Selector */}
             <div className="pt-6 border-t border-gray-200">
               <p className="text-gray-600 mb-3">Select your role:</p>
