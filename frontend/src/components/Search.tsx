@@ -1,47 +1,15 @@
+import React, { useState } from 'react';
 import { useState } from 'react';
 import { Search as SearchIcon, MapPin, Calendar, Users, Star, Wifi, Coffee, Dumbbell, Filter, SlidersHorizontal } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
+import { getProfile, updateProfile, login, createRegister, register, createLogin, createPassword-reset, getUsers, logout } from './services/api';
 interface SearchProps {
   onNavigate: (hotel: any) => void;
 }
-
 export function Search({ onNavigate }: SearchProps) {
   const [searchLocation, setSearchLocation] = useState('New York');
   const [activeFilter, setActiveFilter] = useState('All');
-
-  const hotels = [
-    {
-      id: 1,
-      name: 'Grand Plaza Hotel',
-      location: 'Manhattan, New York',
-      rating: 4.8,
-      reviews: 320,
-      price: 249,
-      image: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGxvYmJ5fGVufDF8fHx8MTc2NTQyNDcwNXww&ixlib=rb-4.1.0&q=80&w=1080',
-      amenities: ['Wifi', 'Pool', 'Gym', 'Restaurant'],
-      available: 5
-    },
-    {
-      id: 2,
-      name: 'Modern City Suites',
-      location: 'Brooklyn, New York',
-      rating: 4.6,
-      reviews: 185,
-      price: 189,
-      image: 'https://images.unsplash.com/photo-1572177215152-32f247303126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzY1NDUzMDMyfDA&ixlib=rb-4.1.0&q=80&w=1080',
-      amenities: ['Wifi', 'Parking', 'Gym'],
-      available: 3
-    },
-    {
-      id: 3,
-      name: 'Boutique Hotel Collection',
-      location: 'SoHo, New York',
-      rating: 4.9,
-      reviews: 412,
-      price: 329,
-      image: 'https://images.unsplash.com/photo-1649731000184-7ced04998f44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib3V0aXF1ZSUyMGhvdGVsfGVufDF8fHx8MTc2NTQ0NDEzNHww&ixlib=rb-4.1.0&q=80&w=1080',
-      amenities: ['Wifi', 'Restaurant', 'Bar', 'Spa'],
+  const [hotels, sethotels] = useState([]);,
       available: 2
     },
     {
@@ -56,8 +24,24 @@ export function Search({ onNavigate }: SearchProps) {
       available: 8
     },
   ];
-
-  const filters = ['All', 'Luxury', 'Budget', 'Business', 'Boutique'];
+  const [filters, setFilters] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen pb-12">
@@ -73,7 +57,6 @@ export function Search({ onNavigate }: SearchProps) {
           <h1 className="text-white mb-8" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
             Find Your Perfect Stay
           </h1>
-
           {/* Search Bar */}
           <div className="bg-white rounded-2xl p-6 shadow-2xl">
             <div className="grid md:grid-cols-4 gap-4">
@@ -125,7 +108,6 @@ export function Search({ onNavigate }: SearchProps) {
           </div>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Filter Chips */}
@@ -149,7 +131,6 @@ export function Search({ onNavigate }: SearchProps) {
             </button>
           ))}
         </div>
-
         {/* Results Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-gray-800">
@@ -162,7 +143,6 @@ export function Search({ onNavigate }: SearchProps) {
             <span className="text-gray-700">More Filters</span>
           </button>
         </div>
-
         {/* Hotel Cards Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {hotels.map((hotel) => (
@@ -214,7 +194,6 @@ export function Search({ onNavigate }: SearchProps) {
                   </div>
                 </div>
               </div>
-
               {/* Hotel Details */}
               <div 
                 className="p-6"
@@ -234,7 +213,6 @@ export function Search({ onNavigate }: SearchProps) {
                     <span className="text-white opacity-80">/night</span>
                   </div>
                 </div>
-
                 {/* Amenities */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {hotel.amenities.map((amenity, index) => (
@@ -247,7 +225,6 @@ export function Search({ onNavigate }: SearchProps) {
                     </span>
                   ))}
                 </div>
-
                 {/* View Details Button */}
                 <button 
                   className="w-full py-3 rounded-xl text-white transition-all duration-300 hover:shadow-xl"
