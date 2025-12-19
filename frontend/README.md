@@ -1,7 +1,7 @@
 
-  # Design Ecommerce Product UI
+  # Hotel Booking UI Design
 
-  This is a code bundle for Design Ecommerce Product UI. The original project is available at https://www.figma.com/design/OVRhcQsYHXE2goMmnvrnwx/Design-Ecommerce-Product-UI.
+  This is a code bundle for Hotel Booking UI Design. The original project is available at https://www.figma.com/design/vW7axdwisjXr3eh3WRXDqZ/Hotel-Booking-UI-Design.
 
   ## Running the code
 
